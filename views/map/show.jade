@@ -1,0 +1,47 @@
+extends ../layout
+
+block title
+  title #{map.title} - マトリッター
+
+block styles
+  link(rel='stylesheet', href='/stylesheets/map.css')
+
+block body
+  each user in map.users
+    a(href="http://twitter.com/#{user.screen_name}", style="position: absolute; top:#{user.top}px; left:#{user.left}px;")
+      img(src="#{user.profile_image}", class="twitter-profile-image")
+
+  #map.dnp-rect
+
+  #labels
+    ul.inline
+      each label,key in map.labels
+        li(id="#{key}")
+          input(value="#{label}", readonly)
+
+  #side-rect
+    #control.well
+      a(href="/map")
+        button(class="btn btn-large") 新しいマップを作る
+      h3#map-title= map.title
+      if(isOwner)
+        button(class="btn btn-danger", id="delete", data-mapid="#{map.cid}") このマップを削除
+      map.owner
+        #ownner-caption
+          img(src="#{map.owner.profile_image_url}", class="twitter-profile-image")
+          a(href="https://twitter.com/#{map.owner.screen_name}")
+            @#{map.owner.screen_name}(#{map.owner.name})
+      map.owner.
+
+    #users.well
+      h3 このマップに含まれるユーザー
+      each user in map.users
+        .dnp-user
+          a(href="http://twitter.com/#{user.screen_name}")
+            img(src="#{user.profile_image}", class="twitter-profile-image")
+            span  @#{user.screen_name}
+
+
+  script(src="/javascripts/show.js")
+
+block footer

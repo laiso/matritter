@@ -1,0 +1,26 @@
+{
+  "name": "matritter",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "start": "node server"
+  },
+  "dependencies": {
+    "express": "3.1.0"
+    ,"jade": "*"
+    ,"mongoose": "*"
+    ,"redis": "*"
+    ,"connect-redis": "*"
+    ,"twitter": "*"
+    ,"passport": "*"
+    ,"passport-twitter": "*"
+  },
+  "devDependencies":{
+    "mocha": "*"
+    ,"supertest": "*"
+  },
+  "engines": {
+    "node": "0.8.x",
+    "npm":  "1.1.x"
+  }
+}

@@ -1,0 +1,35 @@
+extends layout
+
+block body
+  .container
+    .row
+      .span5
+        h1 マトリッター
+        .leader ツイッターアイコンでマップをつくるサイト
+
+      #header.span7
+        ul.inline
+          li
+            a(href="/map")
+              button(class="btn btn-large") マップを作る
+          li
+            - if(user)
+              ul.inline
+                li
+                  img.twitter-profile-image(src="#{user.profile_image_url}")
+                  a(href="https://twitter.com/#{user.screen_name}")
+                    @#{user.screen_name}
+                li
+                  a(href='/logout') ログアウト
+
+    each map in maps
+      .well
+        a(href="/map/#{map.cid}")
+          p= map.title
+        map.users
+          ul(class="inline")
+            each u in map.users
+              li
+                img(class="twitter-profile-image", src="#{u.profile_image}")
+        .map.users
+

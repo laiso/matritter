@@ -1,0 +1,51 @@
+module.exports = {
+  development: {
+    root: require('path').normalize(__dirname),
+    app: {
+      name: "マトリッター"
+    },
+    session:{
+      secret: 'YOUR_KEY'
+    },
+    db: 'mongodb://localhost/matritter',
+    redis: "redis://localhost:6379/",
+    twitter: {
+      clientID: "YOUR_CLIENT_ID"
+      , clientSecret: "YOUR_CLIENT_SECRET"
+      , callbackURL: "http://127.0.0.1:3000/auth/twitter/callback"
+    }
+  }
+  ,
+  test: {
+    root: require('path').normalize(__dirname),
+    app: {
+      name: "マトリッター"
+    },
+    session:{
+      secret: 'YOUR_KEY'
+    },
+    db: 'mongodb://localhost/matritter-test',
+    redis: "redis://localhost:6379/",
+    twitter: {
+      clientID: "YOUR_CLIENT_ID"
+      , clientSecret: "YOUR_CLIENT_SECRET"
+      , callbackURL: "http://127.0.0.1:3000/auth/twitter/callback"
+    }
+  }
+  , production: {
+    root: require('path').normalize(__dirname),
+    app: {
+      name: "マトリッター"
+    },
+    session:{
+      secret: 'YOUR_KEY'
+    },
+    db: process.env.MONGOLAB_URI || process.env.MONGOHQ_URL,
+    redis: process.env.REDISTOGO_URL,
+    twitter: {
+      clientID: "YOUR_CLIENT_ID"
+      , clientSecret: "YOUR_CLIENT_SECRET"
+      , callbackURL: "http://matritter.lai.so/auth/twitter/callback"
+    }
+  }
+}

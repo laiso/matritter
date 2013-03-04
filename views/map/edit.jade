@@ -1,0 +1,49 @@
+extends ../layout
+
+block styles
+  link(rel='stylesheet', href='/stylesheets/map.css')
+
+block body
+  #body-rect
+    #map.dnp-rect
+
+    #labels
+      ul.inline
+        li#top
+          input(type='text', value='#{labels.top}', placeholder="属性を入力")
+        li#bottom
+          input(type='text', value='#{labels.bottom}', placeholder="属性を入力")
+        li#left
+          input(type='text', value='#{labels.left}', placeholder="属性を入力")
+        li#right
+          input(type='text', value='#{labels.right}', placeholder="属性を入力")
+
+block side
+  #side-rect
+    #control.well
+      - if(user)
+        ul.inline
+          li
+            img.twitter-profile-image(src="#{user.profile_image_url}")
+            a(href="https://twitter.com/#{user.screen_name}")
+              @#{user.screen_name}
+          li
+            a(href='/logout') ログアウト
+
+      form(action="#", class="form")
+        label タイトル:
+        input#title(name="title", value="#{title}", placeholder="タイトルを入力")
+      button#publish(class="btn") 公開する
+      a(href="/")
+        button(class="btn") キャンセル
+
+    #users.well
+      #search-box
+        input#search-text(placeholder="ユーザーを検索")
+        button#search(class="btn") 検索する
+      #search-result
+
+  script(type='text/javascript', src='/javascripts/map.js')
+
+
+block footer
